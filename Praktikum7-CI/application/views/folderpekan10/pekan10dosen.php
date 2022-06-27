@@ -5,14 +5,14 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Praktikum 7 CodeIgniter</h1>
+            <h1>Praktikum Mandiri Pekan 10</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="<?php echo base_url();?>index.php/dashboard">Home</a></li>
-              <li class="breadcrumb-item"><a href="<?php echo base_url();?>index.php/mahasiswa">Mahasiswa</a></li>
+              <li class="breadcrumb-item"><a href="<?php echo base_url();?>index.php/pekan10">Prodi</a></li>
+              <li class="breadcrumb-item"><a href="<?php echo base_url();?>index.php/pekan10mahasiswa">Mahasiswa</a></li>
               <li class="breadcrumb-item active">Dosen</li>
-              <li class="breadcrumb-item"><a href="<?php echo base_url();?>index.php/matakuliah">Dosen Matakuliah</a></li>
 
             </ol>
           </div>
@@ -26,7 +26,7 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-        <a href="<?php echo base_url();?>index.php/dosenform"><button type="button" class="btn btn-success">Tambah Dosen</button></a>
+          <a href="<?php echo base_url();?>index.php/tambahdosen"><button type="button" class="btn btn-success">Tambah Dosen</button></a>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -43,19 +43,42 @@
     <table class="table">
         <thead>
             <tr>
-                <th>NO</th><th>NIDN</th><th>Nama</th><th>Pendidikan</th>
+                <th>NO</th><th>NIDN</th><th>Nama</th><th>Gender</th><th>Tempat Tanggal Lahir</th><th>Pendidikan Akhir</th><th>Kode Prodi</th>
+                <?php
+                  if($this->session->userdata('ROLE')=='ADMIN'){
+                ?>
+                <th>Action</th>
+                <?php
+                  }
+                ?>
             </tr>
         </thead>
     <tbody>
     <?php
     $nomor=1;
-    foreach($list_dsn as $dsn){
+    foreach($list_dosen as $row){
     ?>
         <tr>
             <td><?=$nomor?></td>
-            <td><?=$dsn->nidn?></td>
-            <td><?=$dsn->dosen?></td>
-            <td><?=$dsn->pendidikan?></td>
+            <td><?=$row->nidn?></td>
+            <td><?=$row->nama?></td>
+            <td><?=$row->gender?></td>
+            <td><?=$row->tmp_lahir?>, <?=$row->tgl_lahir?></td>
+            <td><?=$row->pendidikan_akhir?></td>
+            <td><?=$row->prodi_kode?></td>
+            <?php
+              if($this->session->userdata('ROLE')=='ADMIN'){
+            ?>
+            <td>
+              <a href="<?php echo base_url();?>index.php/pekan10dosen/view?id=<?=$row->nidn?>">View</a> |
+              <a href="<?php echo base_url();?>index.php/tambahdosen/edit?id=<?=$row->nidn?>">Edit</a> |
+              <a href="<?php echo base_url();?>index.php/tambahdosen/delete?id=<?=$row->nidn?>"
+              onclick="if(!confirm('Anda Yakin Hapus Dosen NIDN <?=$row->nidn?>?')) {return false}" >Delete</a>
+            </td>
+            <?php
+              }
+            ?>
+
         </tr>
     <?php
     $nomor++;

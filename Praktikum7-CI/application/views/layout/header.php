@@ -1,3 +1,8 @@
+<?php
+  if(!$this->session->has_userdata('USERNAME')){
+    redirect(base_url().'index.php/login');
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,6 +30,22 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="<?php echo base_url();?>index.php/dashboard" class="nav-link">Home</a>
       </li>
+
+      <?php
+        if($this->session->userdata('ROLE')=='ADMIN') {
+      ?>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="<?php echo base_url();?>index.php/pekan10" class="nav-link">Prodi</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="<?php echo base_url();?>index.php/pekan10mahasiswa" class="nav-link">Mahasiswa</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="<?php echo base_url();?>index.php/pekan10dosen" class="nav-link">Dosen</a>
+      </li>
+      <?php
+        }
+      ?>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
       </li>
@@ -34,6 +55,7 @@
     <ul class="navbar-nav ml-auto">
       <!-- Navbar Search -->
       <li class="nav-item">
+        <a href="<?php echo base_url();?>index.php/login/logout" class="btn btn-secondary btn-sm" role="button" aria-disabled="true">Logout</a>
         <a class="nav-link" data-widget="navbar-search" href="#" role="button">
           <i class="fas fa-search"></i>
         </a>

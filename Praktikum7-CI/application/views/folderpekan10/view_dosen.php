@@ -5,14 +5,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Praktikum 7 CodeIgniter</h1>
+            <h1>Praktikum Mandiri Pekan 10</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="<?php echo base_url();?>index.php/dashboard">Home</a></li>
-              <li class="breadcrumb-item"><a href="<?php echo base_url();?>index.php/mahasiswa">Mahasiswa</a></li>
-              <li class="breadcrumb-item active">Dosen</li>
-              <li class="breadcrumb-item"><a href="<?php echo base_url();?>index.php/matakuliah">Dosen Matakuliah</a></li>
+              <li class="breadcrumb-item"><a href="<?php echo base_url();?>index.php/pekan10dosen">Dosen</a></li>
 
             </ol>
           </div>
@@ -26,7 +24,7 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-        <a href="<?php echo base_url();?>index.php/dosenform"><button type="button" class="btn btn-success">Tambah Dosen</button></a>
+        <h3 class="card-title">Data Dosen</h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -39,31 +37,44 @@
         </div>
         <div class="card-body">
         <div class="col-md-12">
-    <h3>Daftar Dosen</h3>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>NO</th><th>NIDN</th><th>Nama</th><th>Pendidikan</th>
-            </tr>
-        </thead>
-    <tbody>
-    <?php
-    $nomor=1;
-    foreach($list_dsn as $dsn){
-    ?>
-        <tr>
-            <td><?=$nomor?></td>
-            <td><?=$dsn->nidn?></td>
-            <td><?=$dsn->dosen?></td>
-            <td><?=$dsn->pendidikan?></td>
-        </tr>
-    <?php
-    $nomor++;
-    }
-    ?>
-    </tbody>
-    </table>
-</div>
+
+        <div class="row mb-2">
+          <div class="col-sm-8">
+            <table class="table table-striped">
+              <tbody>
+                <tr>
+                  <td>NIDN</td>
+                  <td><?=$dsn->nidn?></td>
+                </tr>
+                <tr>
+                  <td>Nama Lengkap</td>
+                  <td><?=$dsn->nama?></td>
+                </tr>
+                <tr>
+                  <td>Gender</td>
+                  <td><?=$dsn->gender?></td>
+                </tr>
+                <tr>
+                  <td>Tempat, Tanggal Lahir</td>
+                  <td><?=$dsn->tmp_lahir?>, <?=$dsn->tgl_lahir?></td>
+                </tr>
+                <tr>
+                  <td>Pendidikan Akhir</td>
+                  <td><?=$dsn->pendidikan_akhir?></td>
+                </tr>
+                <tr>
+                  <td>Kode Prodi</td>
+                  <td><?=$dsn->prodi_kode?></td>
+                </tr>
+              </tbody>
+              </table>
+
+          </div>
+          <div class="col-sm-4">
+            FOTO
+          </div>
+        </div>
+        </div>
         </div>
         <!-- /.card-body -->
         <div class="card-footer">

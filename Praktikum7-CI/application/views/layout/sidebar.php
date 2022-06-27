@@ -14,7 +14,15 @@
           <img src="<?php echo base_url();?>/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Muhamad Rafi Baihaki</a>
+          <a href="#" class="d-block">
+            <?php 
+              if($this->session->has_userdata('USERNAME')){
+                echo $this->session->userdata('USERNAME');
+                echo ' - '.$this->session->userdata('ROLE');
+              }
+            
+            ?>
+          </a>
         </div>
       </div>
 
@@ -32,6 +40,7 @@
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
+        
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
@@ -47,23 +56,32 @@
               <li class="nav-item">
                 <a href="<?php echo base_url();?>index.php/mahasiswa" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Praktikum 6 CI</p>
+                  <p>Praktikum 7 CI</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="<?php echo base_url();?>index.php/mahasiswaform" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Praktikum 7 CI</p>
+                  <p>Praktikum 8 CI</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../../index3.html" class="nav-link">
+                <a href="<?php echo base_url();?>index.php/pekan10" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>SOON</p>
+                  <p>Pekan 10 - Mandiri</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo base_url();?>index.php/tambahprodi" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Pekan 11 - Mandiri</p>
                 </a>
               </li>
             </ul>
           </li>
+          <?php
+          if($this->session->userdata('ROLE')=='ADMIN'){
+        ?>
           <li class="nav-item">
             <a href="../widgets.html" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
@@ -667,6 +685,9 @@
             </a>
           </li>
         </ul>
+        <?php
+          }
+        ?>
       </nav>
       <!-- /.sidebar-menu -->
     </div>
